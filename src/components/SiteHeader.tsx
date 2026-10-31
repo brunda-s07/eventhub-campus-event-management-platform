@@ -24,8 +24,9 @@ export function SiteHeader() {
   }, [students, studentId, setStudentId]);
 
   const linkCls =
-    "rounded-full px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground";
-  const activeCls = "bg-ink text-ink-foreground hover:text-ink-foreground";
+    "rounded-full px-3 py-1.5 text-sm font-medium transition-colors";
+  const activeCls = "bg-ink text-ink-foreground";
+  const inactive = { className: "text-muted-foreground hover:text-foreground" };
 
   return (
     <header className="sticky top-0 z-40 border-b-2 border-ink bg-background/90 backdrop-blur">
@@ -40,15 +41,15 @@ export function SiteHeader() {
         <nav className="flex items-center gap-1">
           {role === "student" ? (
             <>
-              <Link to="/" className={linkCls} activeProps={{ className: activeCls }} activeOptions={{ exact: true }}>
+              <Link to="/" className={linkCls} activeProps={{ className: activeCls }} inactiveProps={inactive} activeOptions={{ exact: true }}>
                 Discover
               </Link>
-              <Link to="/my-events" className={linkCls} activeProps={{ className: activeCls }}>
+              <Link to="/my-events" className={linkCls} activeProps={{ className: activeCls }} inactiveProps={inactive}>
                 My Events
               </Link>
             </>
           ) : (
-            <Link to="/organizer" className={linkCls} activeProps={{ className: activeCls }}>
+            <Link to="/organizer" className={linkCls} activeProps={{ className: activeCls }} inactiveProps={inactive}>
               Dashboard
             </Link>
           )}
