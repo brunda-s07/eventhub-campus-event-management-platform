@@ -14,7 +14,197 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      announcements: {
+        Row: {
+          created_at: string
+          event_id: string | null
+          id: string
+          kind: string
+          message: string
+          title: string
+        }
+        Insert: {
+          created_at?: string
+          event_id?: string | null
+          id?: string
+          kind?: string
+          message: string
+          title: string
+        }
+        Update: {
+          created_at?: string
+          event_id?: string | null
+          id?: string
+          kind?: string
+          message?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "announcements_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      events: {
+        Row: {
+          activity_points: number
+          agenda: string
+          capacity: number | null
+          category: string
+          club: string
+          contact: string
+          created_at: string
+          description: string
+          eligibility: string
+          ends_at: string
+          featured: boolean
+          fee: number
+          id: string
+          image_url: string | null
+          is_cancelled: boolean
+          is_online: boolean
+          meeting_url: string | null
+          registration_deadline: string
+          starts_at: string
+          title: string
+          venue: string
+          what_to_bring: string
+        }
+        Insert: {
+          activity_points?: number
+          agenda?: string
+          capacity?: number | null
+          category: string
+          club: string
+          contact?: string
+          created_at?: string
+          description?: string
+          eligibility?: string
+          ends_at: string
+          featured?: boolean
+          fee?: number
+          id?: string
+          image_url?: string | null
+          is_cancelled?: boolean
+          is_online?: boolean
+          meeting_url?: string | null
+          registration_deadline: string
+          starts_at: string
+          title: string
+          venue?: string
+          what_to_bring?: string
+        }
+        Update: {
+          activity_points?: number
+          agenda?: string
+          capacity?: number | null
+          category?: string
+          club?: string
+          contact?: string
+          created_at?: string
+          description?: string
+          eligibility?: string
+          ends_at?: string
+          featured?: boolean
+          fee?: number
+          id?: string
+          image_url?: string | null
+          is_cancelled?: boolean
+          is_online?: boolean
+          meeting_url?: string | null
+          registration_deadline?: string
+          starts_at?: string
+          title?: string
+          venue?: string
+          what_to_bring?: string
+        }
+        Relationships: []
+      }
+      registrations: {
+        Row: {
+          attended: boolean
+          cancelled_at: string | null
+          created_at: string
+          event_id: string
+          id: string
+          note: string
+          phone: string
+          status: string
+          student_id: string
+        }
+        Insert: {
+          attended?: boolean
+          cancelled_at?: string | null
+          created_at?: string
+          event_id: string
+          id?: string
+          note?: string
+          phone?: string
+          status?: string
+          student_id: string
+        }
+        Update: {
+          attended?: boolean
+          cancelled_at?: string | null
+          created_at?: string
+          event_id?: string
+          id?: string
+          note?: string
+          phone?: string
+          status?: string
+          student_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "registrations_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "registrations_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      students: {
+        Row: {
+          created_at: string
+          department: string
+          email: string
+          id: string
+          name: string
+          roll_no: string
+          year: number
+        }
+        Insert: {
+          created_at?: string
+          department: string
+          email: string
+          id?: string
+          name: string
+          roll_no: string
+          year: number
+        }
+        Update: {
+          created_at?: string
+          department?: string
+          email?: string
+          id?: string
+          name?: string
+          roll_no?: string
+          year?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
