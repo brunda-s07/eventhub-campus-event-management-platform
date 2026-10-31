@@ -234,7 +234,7 @@ function EventForm({ initial, onClose }: { initial: { id: string | null; form: F
           <div className="sm:col-span-2">
             <Label htmlFor="description">Description *</Label>
             <Textarea id="description" rows={4} value={f.description} onChange={(e) => set("description", e.target.value)} />
-            {errors.description && <p className="mt-1 text-xs text-destructive">{errors.description}</p>}
+            {errors["description"] && <p className="mt-1 text-xs text-destructive">{errors["description"]}</p>}
           </div>
           <div>
             <Label>Category *</Label>

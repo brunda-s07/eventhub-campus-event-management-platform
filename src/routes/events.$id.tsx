@@ -53,7 +53,7 @@ function EventDetails() {
   const register = useMutation({
     mutationFn: async () => {
       const parsed = regSchema.safeParse({ phone, note });
-      if (!parsed.success) throw new Error(parsed.error.issues[0].message);
+      if (!parsed.success) throw new Error(parsed.error.issues[0]?.message ?? "Invalid input");
       const { error } = await supabase.from("registrations").insert({ event_id: id, student_id: studentId!, ...parsed.data });
       if (error) throw new Error(error.code === "23505" ? "You're already registered for this event" : error.message);
     },

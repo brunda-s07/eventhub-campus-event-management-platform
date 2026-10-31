@@ -13,7 +13,7 @@ export function SiteHeader() {
 
   useEffect(() => {
     if (students?.length && (!studentId || !students.some((s) => s.id === studentId))) {
-      setStudentId(students[0].id);
+      setStudentId(students[0]!.id);
     }
   }, [students, studentId, setStudentId]);
 
