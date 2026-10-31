@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { Sparkles } from "lucide-react";
@@ -10,6 +10,12 @@ export function SiteHeader() {
   const { role, setRole, studentId, setStudentId } = useIdentity();
   const { data: students } = useQuery(studentsQuery);
   const navigate = useNavigate();
+  const pathname = useLocation({ select: (l) => l.pathname });
+
+  useEffect(() => {
+    if (pathname.startsWith("/organizer") && role !== "organizer") setRole("organizer");
+    if ((pathname === "/" || pathname.startsWith("/my-events")) && role !== "student") setRole("student");
+  }, [pathname, role, setRole]);
 
   useEffect(() => {
     if (students?.length && (!studentId || !students.some((s) => s.id === studentId))) {
