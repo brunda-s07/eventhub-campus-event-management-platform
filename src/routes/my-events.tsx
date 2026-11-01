@@ -9,6 +9,7 @@ import { eventsQuery, myRegistrationsQuery, studentsQuery } from "@/lib/api";
 import { downloadIcs, eventStatus } from "@/lib/events";
 import { useIdentity } from "@/lib/demo-identity";
 import { StatusBadge } from "@/components/StatusBadge";
+import { EventCalendar } from "@/components/EventCalendar";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import {
@@ -130,10 +131,12 @@ function MyEvents() {
             <TabsTrigger value="upcoming">Upcoming ({upcoming.length})</TabsTrigger>
             <TabsTrigger value="past">Completed ({past.length})</TabsTrigger>
             <TabsTrigger value="cancelled">Cancelled ({cancelled.length})</TabsTrigger>
+            <TabsTrigger value="calendar">Calendar</TabsTrigger>
           </TabsList>
           <TabsContent value="upcoming" className="mt-4">{list(upcoming, true)}</TabsContent>
           <TabsContent value="past" className="mt-4">{list(past, false)}</TabsContent>
           <TabsContent value="cancelled" className="mt-4">{list(cancelled, false)}</TabsContent>
+          <TabsContent value="calendar" className="mt-4"><EventCalendar events={active.map((x) => x.e!)} /></TabsContent>
         </Tabs>
       )}
     </div>

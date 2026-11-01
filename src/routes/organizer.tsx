@@ -8,7 +8,7 @@ import { Download, Megaphone, Pencil, Plus, Trash2, Users } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import type { TablesInsert } from "@/integrations/supabase/types";
 import { eventsQuery, participantsQuery } from "@/lib/api";
-import { CATEGORIES, eventStatus, type EventWithCount } from "@/lib/events";
+import { CATEGORIES, CLUBS, eventStatus, type EventWithCount } from "@/lib/events";
 import { StatusBadge } from "@/components/StatusBadge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -243,7 +243,14 @@ function EventForm({ initial, onClose }: { initial: { id: string | null; form: F
               <SelectContent>{CATEGORIES.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
             </Select>
           </div>
-          {field("club", "Organising club *")}
+          <div>
+            <Label>Organising club *</Label>
+            <Select value={f.club} onValueChange={(v) => set("club", v)}>
+              <SelectTrigger><SelectValue placeholder="Choose a club" /></SelectTrigger>
+              <SelectContent>{CLUBS.map((c) => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent>
+            </Select>
+            {errors["club"] && <p className="mt-1 text-xs text-destructive">{errors["club"]}</p>}
+          </div>
           {field("contact", "Organiser contact")}
           {field("image_url", "Poster image URL", { placeholder: "https://…" })}
           {field("starts_at", "Starts *", { type: "datetime-local" })}
