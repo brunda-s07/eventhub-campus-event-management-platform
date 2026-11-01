@@ -16,6 +16,17 @@ export const CATEGORIES = [
   "Other",
 ] as const;
 
+export const CLUBS = [
+  "Protocol - Computer Science Club",
+  "Singularity - The Astronomical Society",
+  "TeamCodeLocked - The Technical Club",
+  "NSS - Social Club",
+  "Inksanity - Literary and Debating Society",
+  "Falcons - Multimedia Team",
+  "Pentagram - Mathematical Society",
+  "FAC - The Fine Arts Club",
+] as const;
+
 export type EventStatus =
   | "Registration Open"
   | "Filling Fast"
